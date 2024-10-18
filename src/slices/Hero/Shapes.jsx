@@ -64,19 +64,63 @@ function Geometries() {
 
   const materials = [
     new THREE.MeshNormalMaterial(),
-    new THREE.MeshStandardMaterial({ color: 0x55efc4, roughness: 1 }),
-    new THREE.MeshStandardMaterial({ color: 0xa29bfe, roughness: 1 }),
-    new THREE.MeshStandardMaterial({ color: 0xfdcb6e, roughness: 1 }),
-    new THREE.MeshStandardMaterial({ color: 0x273c75, roughness: 1 }),
-    new THREE.MeshStandardMaterial({ color: 0x079992, roughness: 1 }),
-    new THREE.MeshStandardMaterial({ color: 0xd63031, roughness: 1 }),
-    new THREE.MeshStandardMaterial({ color: 0x5f27cd, roughness: 1 }),
+    new THREE.MeshStandardMaterial({
+      color: 0x55efc4,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0xa29bfe,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0xfdcb6e,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0x273c75,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0x079992,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0xd63031,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0x5f27cd,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0xeb2f06,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0x353b48,
+      roughness: 1,
+      metalness: 1,
+    }),
+    new THREE.MeshStandardMaterial({
+      color: 0x778ca3,
+      roughness: 1,
+      metalness: 1,
+    }),
   ];
 
   const soundEffects = [
     new Audio("/sounds/knock1.ogg"),
     new Audio("/sounds/knock2.ogg"),
     new Audio("/sounds/knock3.ogg"),
+    new Audio("/sounds/knock4.ogg"),
   ];
 
   return geometries.map(({ geometry, position, r }) => (
