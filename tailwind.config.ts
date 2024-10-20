@@ -8,6 +8,7 @@ const config: Config = {
     "./src/slices/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {},
-  plugins: [],
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;

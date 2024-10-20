@@ -69,6 +69,67 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type PageDocumentDataSlicesSlice = TechlistSlice | BiopraphySlice;
+
+/**
+ * Content for Page documents
+ */
+interface PageDocumentData {
+  /**
+   * Slice Zone field in *Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
+   * Meta Title field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Page document from Prismic
+ *
+ * - **API ID**: `page`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
 /**
  * Item in *Settings → Nav Item*
  */
@@ -212,7 +273,95 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument | SettingsDocument;
+export type AllDocumentTypes =
+  | HomepageDocument
+  | PageDocument
+  | SettingsDocument;
+
+/**
+ * Primary content in *Biography → Default → Primary*
+ */
+export interface BiopraphySliceDefaultPrimary {
+  /**
+   * Heading field in *Biography → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: biopraphy.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Description field in *Biography → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: biopraphy.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Text field in *Biography → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: biopraphy.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Biography → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: biopraphy.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Avatar field in *Biography → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: biopraphy.default.primary.avatar
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  avatar: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Biography Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BiopraphySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BiopraphySliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Biography*
+ */
+type BiopraphySliceVariation = BiopraphySliceDefault;
+
+/**
+ * Biography Shared Slice
+ *
+ * - **API ID**: `biopraphy`
+ * - **Description**: Biopraphy
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BiopraphySlice = prismic.SharedSlice<
+  "biopraphy",
+  BiopraphySliceVariation
+>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -276,6 +425,88 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Item in *Techlist → Default → Primary → Tech List*
+ */
+export interface TechlistSliceDefaultPrimaryTechListItem {
+  /**
+   * Tech Color field in *Techlist → Default → Primary → Tech List*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: techlist.default.primary.tech_list[].tech_color
+   * - **Documentation**: https://prismic.io/docs/field#color
+   */
+  tech_color: prismic.ColorField;
+
+  /**
+   * Tech Name field in *Techlist → Default → Primary → Tech List*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: techlist.default.primary.tech_list[].tech_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tech_name: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Techlist → Default → Primary*
+ */
+export interface TechlistSliceDefaultPrimary {
+  /**
+   * Heading field in *Techlist → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: techlist.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Tech List field in *Techlist → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: techlist.default.primary.tech_list[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  tech_list: prismic.GroupField<
+    Simplify<TechlistSliceDefaultPrimaryTechListItem>
+  >;
+}
+
+/**
+ * Default variation for Techlist Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TechlistSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TechlistSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Techlist*
+ */
+type TechlistSliceVariation = TechlistSliceDefault;
+
+/**
+ * Techlist Shared Slice
+ *
+ * - **API ID**: `techlist`
+ * - **Description**: Techlist
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TechlistSlice = prismic.SharedSlice<
+  "techlist",
+  TechlistSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -300,14 +531,26 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      PageDocument,
+      PageDocumentData,
+      PageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavItemItem,
       AllDocumentTypes,
+      BiopraphySlice,
+      BiopraphySliceDefaultPrimary,
+      BiopraphySliceVariation,
+      BiopraphySliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      TechlistSlice,
+      TechlistSliceDefaultPrimaryTechListItem,
+      TechlistSliceDefaultPrimary,
+      TechlistSliceVariation,
+      TechlistSliceDefault,
     };
   }
 }

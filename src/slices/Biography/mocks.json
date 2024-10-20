@@ -1,0 +1,59 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "fierce",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ea nisi officia qui aliquip duis aliquip dolor nisi. Cupidatat ipsum ut nostrud ipsum labore ex sint anim cillum nostrud laborum dolor anim. Esse sint exercitation et adipisicing dolore ipsum magna elit et elit anim id deserunt deserunt."
+						}
+					}
+				]
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "ranch",
+				"type": "Text"
+			},
+			"button_link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com",
+					"text": "thrown"
+				}
+			},
+			"avatar": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1593642532973-d31b6557fa68",
+					"width": 8640,
+					"height": 8640
+				},
+				"url": "https://images.unsplash.com/photo-1593642532973-d31b6557fa68",
+				"width": 8640,
+				"height": 8640,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"thumbnails": {}
+			}
+		},
+		"items": []
+	}
+]
